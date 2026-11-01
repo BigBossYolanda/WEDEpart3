@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin.html
+Disallow: /*.pdf$
+
+Sitemap: https://katz-hair-do.netlify.app/sitemap.xml

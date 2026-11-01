@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Katz Hair-do services - Braids R650, Cut R250, Colour R550, Wig Install R400 - Book in Cape Town">
+<title>Services & Pricing | Katz Hair-do</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><nav><div class="logo">KATZ HAIR-DO</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="enquiry.html">Enquiry</a></li><li><a href="contact.html">Contact</a></li></ul></nav></header>
+<main>
+<h1>Our Services</h1>
+<input type="text" id="serviceSearch" placeholder="Search services (e.g. braids, colour, kids)">
+<select id="serviceSort"><option value="">Sort by</option><option value="price-low">Price Low to High</option><option value="price-high">Price High to Low</option><option value="name">Name A-Z</option></select>
+<div class="services-grid" id="services-dynamic-grid"></div>
+<p style="margin-top:20px"><a href="enquiry.html" class="btn">Enquire About Pricing</a> <a href="#" onclick="openModal();return false" class="btn">How Pricing Works</a></p>
+<div id="myModal"><div class="modal-box"><h3>Pricing Info</h3><p>All prices include wash and style. Braids last 6 weeks. Colour includes treatment.</p><button onclick="closeModal()" class="btn">Close</button></div></div>
+</main><footer><p>&copy; 2026 Katz Hair-do</p></footer>
+<script src="js/main.js"></script>
+</body>
+</html>

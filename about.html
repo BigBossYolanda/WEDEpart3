@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 3.1 On-Page SEO -->
+    <meta name="description" content="About Katz Hair-do - Founded 2019 in Cape Town, luxury haircare for all hair types, protective styles">
+    <meta name="keywords" content="Katz Hair-do about, Cape Town hair salon history, inclusive hair salon">
+    <meta name="author" content="Katz Hair-do">
+    <meta property="og:title" content="About Katz Hair-do">
+    <meta property="og:description" content="Making luxury haircare accessible since 2019">
+    <title>About Us | Katz Hair-do - Our Story Cape Town</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">KATZ HAIR-DO</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>About Katz Hair-do</h1>
+
+    <!-- 2.1 Tabs - POE Requirement -->
+    <div class="tabs">
+        <div class="tab active" data-tab="1">Our Story</div>
+        <div class="tab" data-tab="2">Our Values</div>
+        <div class="tab" data-tab="3">Our Team</div>
+    </div>
+
+    <div class="tab-content active" id="tab-1">
+        <h2>Our Story</h2>
+        <p><strong>Katz Hair-do was founded in 2019</strong> with a mission to make luxury haircare accessible. We specialize in protective styles that celebrate natural beauty.</p>
+        <p>What started as a small chair in Loop Street has grown into two branches - City Centre and Claremont - serving over 2000 clients across Cape Town.</p>
+        <p>We believe every client deserves to feel confident. From knotless braids that last 6 weeks to flawless wig installs, we do it with care.</p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO4qUY5KH5PWrKxfSTO7jN4k7jxLkd2Gg9xQWtb468UcvWLOVk5jz1iQA&s=10" alt="Katz Hair-do salon interior Cape Town luxury haircare" loading="lazy" style="width:100%; max-width:600px; margin:15px 0; border-radius:12px;">
+    </div>
+
+    <div class="tab-content" id="tab-2">
+        <h2>Our Values</h2>
+        <div class="services-grid">
+            <article>
+                <h3>Inclusivity</h3>
+                <p>All hair types welcome. Textured, relaxed, natural, kids - we celebrate you. No judgment, just skill.</p>
+            </article>
+            <article>
+                <h3>Quality</h3>
+                <p>No shortcuts, only excellence. We use premium, ammonia-free products and sterilize all tools after each client.</p>
+            </article>
+            <article>
+                <h3>Care</h3>
+                <p>Healthy hair first. We will never damage your edges for a style. Consultation before every service.</p>
+            </article>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab-3">
+        <h2>Meet the Team</h2>
+        <div class="services-grid">
+            <article>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqM38G5lvtzjgNCHZcBeaMP_LCqVflwA_4XVPbhBl4lA&s=10" alt="Katz Hair-do founder and lead stylist" loading="lazy">
+                <h3>Yolanda - Founder</h3>
+                <p>8 years experience, specialist in knotless braids and colour correction.</p>
+            </article>
+            <article>
+                <img src="https://img.buzzfeed.com/buzzfeed-static/static/2023-04/8/15/asset/eac68c71aa83/sub-buzz-2105-1680968212-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto" alt="Senior stylist at Katz Hair-do Claremont branch" loading="lazy">
+                <h3>Chloe - Senior Stylist</h3>
+                <p>Wig install expert, 5 years, known for flawless melt and baby hairs.</p>
+            </article>
+            <article>
+                <img src="https://i.pinimg.com/736x/72/80/31/72803132f749f024f1dc6b2c3143f74c.jpg" alt="Junior stylist Katz Hair-do" loading="lazy">
+                <h3>Marsai - Stylist</h3>
+                <p>Kids styles and treatments, gentle hands, loves creative colour.</p>
+            </article>
+        </div>
+    </div>
+
+    <!-- 2.1 Accordion - POE Requirement -->
+    <h2 style="margin-top:30px">FAQs</h2>
+    
+    <div class="acc-header">► What are your hygiene protocols?</div>
+    <div class="acc-content">
+        <p>All tools are disinfected with Barbicide after each use. Capes are washed daily. Stations are sanitized between clients. We use disposable gloves for colour and treatment services.</p>
+    </div>
+
+    <div class="acc-header">► How long do knotless braids last?</div>
+    <div class="acc-content">
+        <p>Knotless braids last 4-6 weeks with proper care. We include a free aftercare sheet with every install: wrap at night, oil scalp 2x per week, no heavy products.</p>
+    </div>
+
+    <div class="acc-header">► Do you do walk-ins?</div>
+    <div class="acc-content">
+        <p>Yes, City Centre branch takes walk-ins Mon-Sat 9am-7pm, but booking via <a href="contact.html">Contact</a> or <a href="enquiry.html">Enquiry</a> is recommended to avoid waiting.</p>
+    </div>
+
+    <!-- 2.1 Interactive Map - POE Requirement -->
+    <h2 style="margin-top:30px">Where to Find Us</h2>
+    <p>We have two locations - both shown on interactive map (Leaflet.js with OpenStreetMap)</p>
+    <div id="map"></div>
+
+    <!-- Modal trigger for POE -->
+    <p style="margin-top:20px"><a href="#" onclick="openModal(); return false;" class="btn">Why Choose Us? (Modal Demo)</a></p>
+    <div id="myModal">
+        <div class="modal-box">
+            <h3>Why Katz Hair-do?</h3>
+            <p>~ 2000+ happy clients<br>~ 5-star Google rating<br>~ Affordable luxury - R200 to R650<br>~ Two convenient locations<br>~ Inclusive pricing</p>
+            <button onclick="closeModal()" class="btn">Close</button>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Katz Hair-do | info@katzhairdo.co.za</p>
+    <p><a href="services.html">Our Services</a> | <a href="gallery.html">See Gallery</a> | <a href="enquiry.html">Enquire</a></p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

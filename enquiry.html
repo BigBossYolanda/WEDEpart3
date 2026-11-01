@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Enquire about Katz Hair-do services - get cost calculation and availability">
+<title>Enquiry | Katz Hair-do</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><nav><div class="logo">KATZ HAIR-DO</div>
+<ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="enquiry.html" class="active">Enquiry</a></li><li><a href="contact.html">Contact</a></li></ul></nav></header>
+<main>
+<h1>Service Enquiry</h1><p>Different purpose from Contact - this calculates cost & availability.</p>
+<form id="enquiryForm" action="mailto:info@katzhairdo.co.za" method="post" enctype="text/plain" novalidate>
+<label>Full Name *</label><input type="text" id="eName" required><span class="error" id="eNameErr"></span>
+<label>Email *</label><input type="email" id="eEmail" required><span class="error" id="eEmailErr"></span>
+<label>Phone *</label><input type="tel" id="ePhone" required><span class="error" id="ePhoneErr"></span>
+<label>Service Type *</label><select id="eService" required><option value="">--Select--</option><option>Knotless Braids</option><option>Cut & Style</option><option>Colour</option><option>Wig Install</option><option>Kids</option><option>Become Volunteer</option><option>Become Sponsor</option></select><span class="error" id="eServiceErr"></span>
+<label>Quantity / Hours</label><input type="number" id="eQty" min="1" value="1">
+<label>Preferred Date</label><input type="date" id="eDate"><span class="error" id="eDateErr"></span>
+<label>Message</label><textarea id="eMsg" rows="4"></textarea>
+<button type="submit" class="btn">Calculate Cost & Enquire</button>
+<div id="eResponse" class="success"></div>
+</form>
+</main><footer><p>&copy; 2026 Katz Hair-do</p></footer>
+<script>
+document.getElementById('enquiryForm').addEventListener('submit', async (e)=>{
+ e.preventDefault(); let valid=true;
+ document.querySelectorAll('.error').forEach(el=>el.textContent='');
+ const name=document.getElementById('eName').value.trim();
+ if(name.length<3){document.getElementById('eNameErr').textContent='Name min 3 chars';valid=false}
+ const email=document.getElementById('eEmail').value.trim();
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('eEmailErr').textContent='Invalid email';valid=false}
+ const phone=document.getElementById('ePhone').value.trim();
+ if(!/^[0-9+ ]{10,15}$/.test(phone)){document.getElementById('ePhoneErr').textContent='Phone 10-15 digits';valid=false}
+ const service=document.getElementById('eService').value;
+ if(!service){document.getElementById('eServiceErr').textContent='Select service';valid=false}
+ const dateVal=document.getElementById('eDate').value;
+ if(dateVal){ const sel=new Date(dateVal); const today=new Date(); today.setHours(0,0,0,0); if(sel<today){document.getElementById('eDateErr').textContent='Date cannot be past';valid=false} }
+ if(!valid){document.getElementById('eResponse').textContent='❌ Fix errors above'; document.getElementById('eResponse').style.color='red'; return}
+ const qty=parseInt(document.getElementById('eQty').value)||1;
+ const prices={ 'Knotless Braids':650,'Cut & Style':250,'Colour':550,'Wig Install':400,'Kids':300};
+ let cost=prices[service] ? prices[service]*qty : 0;
+ let msg= cost ? `${service}: R${cost} for ${qty} unit(s). Available: Mon-Sat 9am-7pm. City Centre & Claremont.` : `${service} enquiry received. Thank you ${name}!`;
+ document.getElementById('eResponse').textContent=msg; document.getElementById('eResponse').style.color='green';
+ const data={name,email,phone,service,qty,cost,date:new Date()};
+ try{ await fetch('https://jsonplaceholder.typicode.com/posts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); }catch(err){ console.log(err); }
+});
+const saved=localStorage.getItem('enquiryService'); if(saved) document.getElementById('eService').value=saved;
+</script>
+</body>
+</html>

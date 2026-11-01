@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Katz Hair-do - Amazing hair and beauty services in Cape Town">
+    <title>Home | Katz Hair-do</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header and Navigation - Same on all 5 pages -->
+    <header>
+        <nav>
+            <div class="logo">Katz Hair-do</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Look Amazing, Feel Confident</h1>
+            <p>Katz Hair-do provides professional haircuts, coloring, braiding, treatments and styling for students, professionals, families, bridal clients and children of all ages.</p>
+            <a href="enquiry.html" class="btn">Book Your Appointment</a>
+        </section>
+
+        <section>
+            <h2>Our Popular Services</h2>
+            <article>
+                <h3>Haircuts & Styling</h3>
+                <p>Trendy cuts for everyone - from kids to bridal parties.</p>
+            </article>
+            <article>
+                <h3>Color & Braiding Specialists</h3>
+                <p>Creative coloring and professional braiding that lasts.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Katz Hair-do | Cape Town, South Africa</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

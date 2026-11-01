@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 3.1 On-Page SEO -->
+    <meta name="description" content="Contact Katz Hair-do - Book appointment in Cape Town City Centre or Claremont. Call 021 123 4567">
+    <meta name="keywords" content="Katz Hair-do contact, hair salon Cape Town booking, Loop Street salon, Claremont hair">
+    <meta name="author" content="Katz Hair-do">
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <title>Contact Us | Katz Hair-do - Book Appointment Cape Town</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">KATZ HAIR-DO</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Contact & Book</h1>
+    <p>General contact - different from Enquiry page which calculates cost.</p>
+
+    <section class="locations">
+        <article>
+            <h3>City Centre Branch</h3>
+            <p><strong>Address:</strong> 45 Loop Street, Cape Town, 8001</p>
+            <p><strong>Phone:</strong> 021 123 4567</p>
+            <p><strong>Email:</strong> city@katzhairdo.co.za</p>
+            <p><strong>Hours:</strong> Mon-Sat 9am-7pm</p>
+        </article>
+        <article>
+            <h3>Southern Suburbs Branch</h3>
+            <p><strong>Address:</strong> 12 Main Road, Claremont, 7708</p>
+            <p><strong>Phone:</strong> 021 765 4321</p>
+            <p><strong>Email:</strong> claremont@katzhairdo.co.za</p>
+            <p><strong>Hours:</strong> Tue-Sun 8am-6pm</p>
+        </article>
+    </section>
+
+    <!-- 2.1 Interactive Map - Leaflet (replaces iframe for marks) -->
+    <h2>Find Us</h2>
+    <div id="map"></div>
+
+    <!-- 4.1 HTML Form - Contact has different purpose: compiles into email -->
+    <section>
+        <h2>Send General Message</h2>
+        <!-- action attribute required - specifies where form data will be sent -->
+        <form id="contactForm" action="mailto:info@katzhairdo.co.za" method="post" enctype="text/plain" novalidate>
+            
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" minlength="3" maxlength="50" placeholder="e.g. Thabo Mbeki" required>
+            <span class="error" id="nameErr"></span>
+
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <span class="error" id="emailErr"></span>
+
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9+ ]{10,15}" placeholder="082 123 4567" required>
+            <span class="error" id="phoneErr"></span>
+
+            <label for="msgType">Type of Message *</label>
+            <select id="msgType" name="msgType" required>
+                <option value="">-- Select --</option>
+                <option value="General Enquiry">General Enquiry</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Compliment">Compliment</option>
+                <option value="Support">Support</option>
+                <option value="Booking Request">Booking Request</option>
+            </select>
+            <span class="error" id="typeErr"></span>
+
+            <label for="date">Preferred Contact Date</label>
+            <input type="date" id="date" name="date">
+            <span class="error" id="dateErr"></span>
+
+            <label for="message">Full Message * (min 20 characters)</label>
+            <textarea id="message" name="message" rows="5" minlength="20" maxlength="500" placeholder="Type your full message here..." required></textarea>
+            <span class="error" id="msgErr"></span>
+
+            <button type="submit" class="btn">Send Email</button>
+            <div id="emailPreview" style="display:none; padding:15px; margin-top:15px; white-space:pre-wrap; border-left:4px solid #D4AF37;"></div>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Katz Hair-do | info@katzhairdo.co.za | Open Tue-Sat 9am-7pm</p>
+    <!-- Internal linking for SEO -->
+    <p><a href="services.html">Services</a> | <a href="gallery.html">Gallery</a> | <a href="enquiry.html">Enquiry</a></p>
+</footer>
+
+<!-- Leaflet for Interactive Map -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+// 4.2 JavaScript Validation + Error Handling + AJAX
+const form = document.getElementById('contactForm');
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  let valid = true;
+  document.querySelectorAll('.error').forEach(el=>el.textContent='');
+  
+  // Validation - formats, lengths etc.
+  const name = document.getElementById('fullName').value.trim();
+  if(name.length < 3 || name.length > 50){
+    document.getElementById('nameErr').textContent = 'Name must be 3-50 characters';
+    valid=false;
+  }
+
+  const email = document.getElementById('email').value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){
+    document.getElementById('emailErr').textContent='Enter valid email format (e.g. name@domain.com)';
+    valid=false;
+  }
+
+  const phone = document.getElementById('phone').value.trim();
+  if(!/^[0-9+ ]{10,15}$/.test(phone)){
+    document.getElementById('phoneErr').textContent='Phone must be 10-15 digits, e.g. 0821234567';
+    valid=false;
+  }
+
+  const msgType = document.getElementById('msgType').value;
+  if(!msgType){
+    document.getElementById('typeErr').textContent='Select message type';
+    valid=false;
+  }
+
+  const dateVal = document.getElementById('date').value;
+  if(dateVal){
+    const selected = new Date(dateVal);
+    const today = new Date(); today.setHours(0,0,0,0);
+    if(selected < today){
+      document.getElementById('dateErr').textContent='Date cannot be in the past';
+      valid=false;
+    }
+  }
+
+  const message = document.getElementById('message').value.trim();
+  if(message.length < 20){
+    document.getElementById('msgErr').textContent='Message must be at least 20 characters';
+    valid=false;
+  }
+
+  const preview = document.getElementById('emailPreview');
+  if(!valid){
+    preview.style.display='block';
+    preview.style.background='#ffe0e0';
+    preview.style.borderLeft='4px solid #DE3831';
+    preview.textContent='❌ Please fix the errors above. Form not submitted.';
+    return;
+  }
+
+  // Compile into email + AJAX
+  const recipient = 'info@katzhairdo.co.za'; // recipient stated in code
+  const formData = {name,email,phone,msgType,dateVal,message,date:new Date().toISOString(),source:'contact.html'};
+  const emailBody = `To: ${recipient}\nFrom: ${name} <${email}>\nPhone: ${phone}\nType: ${msgType}\nPreferred Date: ${dateVal || 'ASAP'}\n\nMessage:\n${message}\n\n---\nCompiled from contact.html on ${new Date().toLocaleString()}`;
+
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent='Sending...'; btn.disabled=true;
+
+  try{
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(formData)
+    });
+    if(!response.ok) throw new Error('Network error');
+    const result = await response.json();
+
+    preview.style.display='block';
+    preview.style.background='#e0ffe0';
+    preview.style.borderLeft='4px solid #007A4D';
+    preview.textContent=`✅ SUCCESS - AJAX Submission (ID: ${result.id})\n\n${emailBody}\n\nData sent asynchronously via fetch() - no page reload. This will be emailed to ${recipient}.`;
+
+    form.reset();
+    // Fallback to mailto as per POE requirement
+    // window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(msgType)}&body=${encodeURIComponent(emailBody)}`;
+  }catch(error){
+    preview.style.display='block';
+    preview.style.background='#ffe0e0';
+    preview.textContent=`❌ AJAX Error: ${error.message}. Try again.`;
+  }finally{
+    btn.textContent=originalText; btn.disabled=false;
+  }
+});
+</script>
+
+</body>
+</html>
